@@ -1,0 +1,49 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+footer {
+  font-size: smaller;
+  margin: 0 auto;
+  text-align: center;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+  display: block;
+  font-size: 16px;
+  text-align: left;
+}
+.weather-app {
+  border: 1px solid #eee1cc;
+  border-radius: 12px;
+  margin: 45px auto;
+  max-width: 1000px;
+  padding: 30px;
+}
+.city-name {
+  color: #17202a;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 25px;
+}
+.date-hour {
+  text-align: right;
+}
+.current-temp {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+.current-temp img {
+  margin-right: 10px;
+  height: 70 px;
+  width: 70 px;
+}
+.temp-value {
+  color: red;
+  font-size: 40px;
+  font-weight: normal;
+}
