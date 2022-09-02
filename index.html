@@ -11,6 +11,7 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
@@ -19,14 +20,14 @@
         <div class="row">
           <div class="col-6">
             <ul>
-              <li class="city-name">New York, USA</li>
-              <li>Sunny</li>
+              <li class="city-name" id="current-city">New York, USA</li>
+              <li id="description">Sunny</li>
             </ul>
           </div>
           <div class="col-6">
             <ul>
-              <li class="date-hour">Tuesday, 30 August, 2022</li>
-              <li class="date-hour">18h30</li>
+              <li class="date-hour" id="date">Tuesday, 30 August, 2022</li>
+              <li class="date-hour id="hour">18h30</li>
             </ul>
           </div>
         </div>
@@ -36,15 +37,15 @@
             alt="Sunny"
           />
           <div class="value-units">
-            <strong class="temp-value">20</strong>
+            <strong class="temp-value" id="current-temp">20</strong>
             <span class="units"> ºC | <a href="#" id="farh">ºF</a> </span>
           </div>
         </div>
         <div>
           <ul>
             <li>Precipitation: 10%</li>
-            <li>Humidity: 40%</li>
-            <li>Wind: 10km/h</li>
+            <li > Humidity: <span id="humidity">40</span>%</li>
+            <li > Wind: <span id="wind">10</span> Km/h</li>
           </ul>
         </div>
       </div>

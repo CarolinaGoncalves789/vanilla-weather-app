@@ -1,11 +1,7 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-footer {
-  font-size: smaller;
-  margin: 0 auto;
-  text-align: center;
-}
+
 ul {
   margin: 0;
   padding: 0;
@@ -15,6 +11,12 @@ li {
   display: block;
   font-size: 16px;
   text-align: left;
+  text-transform: capitalize;
+}
+footer {
+  font-size: smaller;
+  margin: 0 auto;
+  text-align: center;
 }
 .weather-app {
   border: 1px solid #eee1cc;
