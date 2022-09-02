@@ -33,17 +33,26 @@ li {
   text-align: right;
 }
 .current-temp {
+  align-items: center;
   display: flex;
-  align-items: baseline;
   justify-content: center;
 }
 .current-temp img {
-  margin-right: 10px;
   height: 70 px;
+  margin-right: 10px;
   width: 70 px;
 }
 .temp-value {
-  color: red;
-  font-size: 40px;
+  font-size: 60px;
   font-weight: normal;
+}
+.value-units {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+}
+.units {
+  font-size: 20px;
+  margin: 18px auto;
+  padding-left: 7px;
 }
