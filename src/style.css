@@ -7,19 +7,19 @@ ul {
   padding: 0;
 }
 li {
-  list-style: none;
   display: block;
   font-size: 16px;
+  list-style: none;
   text-align: left;
 }
 small {
   color: grey;
   font-size: 12px;
-  margin-top: -5px;
 }
 footer {
   font-size: smaller;
   margin: 0 auto;
+  text-align: center;
 }
 .weather-app {
   border: 1px solid #eee1cc;
@@ -36,6 +36,11 @@ footer {
 }
 .date-hour {
   text-align: right;
+}
+
+.current-icon {
+  width: 20%;
+  height: auto;
 }
 .current-temp {
   align-items: center;

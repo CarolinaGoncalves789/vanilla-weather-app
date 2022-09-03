@@ -50,6 +50,7 @@ function showTemperature(response) {
   let wind = Math.round(response.data.wind.speed);
   let currentHour = document.querySelector("#current-hour");
   let currentDate = document.querySelector("#current-date");
+  let currentIcon = document.querySelector("#current-icon");
 
   temperatureElement = document.querySelector("#current-temp");
   temperatureElement.innerHTML = `${temperature}`;
@@ -68,6 +69,14 @@ function showTemperature(response) {
 
   currentHour.innerHTML = showHour(response.data.dt * 1000);
   currentDate.innerHTML = showDate(response.data.dt * 1000);
+
+  let iconCode = response.data.weather[0].icon;
+
+  currentIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+  );
+  currentIcon.setAttribute("alt", response.data.weather[0].description);
 }
 let cityApiUrl = "Porto";
 let apiKey = "06443709fb4fa0784a47c70f5cd80b08";
