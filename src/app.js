@@ -43,7 +43,6 @@ function showDate(timestamp) {
 }
 
 function showTemperature(response) {
-  let temperature = Math.round(response.data.main.temp);
   let cityName = response.data.name;
   let description = response.data.weather[0].description;
   let humidity = Math.round(response.data.main.humidity);
@@ -52,8 +51,10 @@ function showTemperature(response) {
   let currentDate = document.querySelector("#current-date");
   let currentIcon = document.querySelector("#current-icon");
 
+  temperatureCelsius = Math.round(response.data.main.temp);
+
   temperatureElement = document.querySelector("#current-temp");
-  temperatureElement.innerHTML = `${temperature}`;
+  temperatureElement.innerHTML = `${temperatureCelsius}`;
 
   cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = `${cityName}`;
@@ -77,27 +78,42 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${iconCode}@2x.png`
   );
   currentIcon.setAttribute("alt", response.data.weather[0].description);
-
-  function showFarhValue(event) {
-    event.preventDefault();
-    let farhValue = Math.round((`${temperature}` * 9) / 5 + 32);
-    temperatureElement.innerHTML = `${farhValue}`;
-  }
-  let fahr = document.querySelector("#farh");
-  fahr.addEventListener("click", showFarhValue);
 }
-
 function search(city) {
   let apiKey = "06443709fb4fa0784a47c70f5cd80b08";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}`).then(showTemperature);
 }
-
 function SubmitCity(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
 
+function showFarhValue(event) {
+  event.preventDefault();
+  let farhValue = Math.round((`${temperatureCelsius}` * 9) / 5 + 32);
+  temperatureElement.innerHTML = `${farhValue}`;
+  celsius.classList.remove("active");
+  fahr.classList.add("active");
+}
+
+function showCelsiusValue(event) {
+  event.preventDefault();
+  temperatureElement.innerHTML = `${temperatureCelsius}`;
+  fahr.classList.remove("active");
+  celsius.classList.add("active");
+}
+
+let temperatureCelsius = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", SubmitCity);
+
+let fahr = document.querySelector("#farh");
+fahr.addEventListener("click", showFarhValue);
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", showCelsiusValue);
+
+search("New York");
