@@ -116,4 +116,4 @@ fahr.addEventListener("click", showFarhValue);
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", showCelsiusValue);
 
-search("New York");
+search("Porto");
