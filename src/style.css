@@ -52,6 +52,16 @@ footer {
   margin-right: 10px;
   width: 70 px;
 }
+.form {
+  padding: 20px 0 40px 0;
+}
+.btn.btn-primary {
+  background: #11d9ac;
+  font-weight: bold;
+  border-color: #0ec198;
+  width: 100%;
+}
+
 .temp-value {
   font-size: 60px;
   font-weight: normal;
