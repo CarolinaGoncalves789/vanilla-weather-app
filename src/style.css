@@ -85,3 +85,16 @@ footer {
 .current-temp .active:hover {
   text-decoration: none;
 }
+.weather-forecast {
+  margin-top: 50px;
+  text-align: center;
+}
+.weather-forecast-day {
+  font-size: 16px;
+}
+.weather-forecast-temp {
+  font-size: 13px;
+}
+.weather-forecast-temp-min {
+  opacity: 0.5;
+}
