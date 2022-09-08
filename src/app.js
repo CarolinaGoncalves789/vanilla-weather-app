@@ -42,29 +42,57 @@ function showDate(timestamp) {
   return `${day}, ${dateDay} ${month}, ${year}`;
 }
 
-function showForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function showForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col-2">
-              <div class="weather-forecast-day">${day}</div>
+              <div class="weather-forecast-day">${formatDay(
+                forecastDay.dt
+              )}</div>
               <img
-                src="http://openweathermap.org/img/wn/50d@2x.png"
+                src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png"
                 alt=""
                 width="45"
               />
               <div class="weather-forecast-temp">
-                <span class="weather-forecast-temp-max">18 ºC</span>
-                <span class="weather-forecast-temp-min">12 ºC</span>
+                <span class="weather-forecast-temp-max">${Math.round(
+                  forecastDay.temp.max
+                )} ºC</span>
+                <span class="weather-forecast-temp-min">${Math.round(
+                  forecastDay.temp.min
+                )} ºC</span>
               </div>
-            </div>`;
+            </div>
+  `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "a43564c91a6c605aeb564c9ed02e3858";
+  let lon = coordinates.lon;
+  let lat = coordinates.lat;
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(showForecast);
 }
 
 function showTemperature(response) {
@@ -103,13 +131,15 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${iconCode}@2x.png`
   );
   currentIcon.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 function search(city) {
   let apiKey = "06443709fb4fa0784a47c70f5cd80b08";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}`).then(showTemperature);
 }
-function SubmitCity(event) {
+function submitCity(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
@@ -133,7 +163,7 @@ function showCelsiusValue(event) {
 let temperatureCelsius = null;
 
 let form = document.querySelector("#search-form");
-form.addEventListener("submit", SubmitCity);
+form.addEventListener("submit", submitCity);
 
 let fahr = document.querySelector("#farh");
 fahr.addEventListener("click", showFarhValue);
@@ -142,4 +172,3 @@ let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", showCelsiusValue);
 
 search("Porto");
-showForecast();
