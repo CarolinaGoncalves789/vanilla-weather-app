@@ -37,8 +37,8 @@ footer {
   text-align: right;
 }
 .current-icon {
-  width: 20%;
   height: auto;
+  width: 20%;
 }
 .current-temp {
   align-items: center;
@@ -46,8 +46,8 @@ footer {
   justify-content: center;
 }
 .current-temp img {
-  height: 70 px;
   margin-right: 10px;
+  height: 70 px;
   width: 70 px;
 }
 .form {
@@ -55,11 +55,10 @@ footer {
 }
 .btn.btn-primary {
   background: #11d9ac;
-  font-weight: bold;
   border-color: #0ec198;
+  font-weight: bold;
   width: 100%;
 }
-
 .temp-value {
   font-size: 60px;
   font-weight: normal;

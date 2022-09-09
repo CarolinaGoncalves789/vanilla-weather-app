@@ -85,16 +85,13 @@ function showForecast(response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
 function getForecast(coordinates) {
   let apiKey = "a43564c91a6c605aeb564c9ed02e3858";
   let lon = coordinates.lon;
   let lat = coordinates.lat;
   let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(showForecast);
 }
-
 function showTemperature(response) {
   let cityName = response.data.name;
   let description = response.data.weather[0].description;
@@ -105,25 +102,18 @@ function showTemperature(response) {
   let currentIcon = document.querySelector("#current-icon");
 
   temperatureCelsius = Math.round(response.data.main.temp);
-
   temperatureElement = document.querySelector("#current-temp");
   temperatureElement.innerHTML = `${temperatureCelsius}`;
-
   cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = `${cityName}`;
-
   descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = `${description}`;
-
   humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${humidity}`;
-
   windElement = document.querySelector("#wind");
   windElement.innerHTML = `${wind}`;
-
   currentHour.innerHTML = showHour(response.data.dt * 1000);
   currentDate.innerHTML = showDate(response.data.dt * 1000);
-
   let iconCode = response.data.weather[0].icon;
 
   currentIcon.setAttribute(
@@ -131,7 +121,6 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${iconCode}@2x.png`
   );
   currentIcon.setAttribute("alt", response.data.weather[0].description);
-
   getForecast(response.data.coord);
 }
 function search(city) {
@@ -144,7 +133,6 @@ function submitCity(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-
 function showFarhValue(event) {
   event.preventDefault();
   let farhValue = Math.round((`${temperatureCelsius}` * 9) / 5 + 32);
@@ -152,16 +140,13 @@ function showFarhValue(event) {
   celsius.classList.remove("active");
   fahr.classList.add("active");
 }
-
 function showCelsiusValue(event) {
   event.preventDefault();
   temperatureElement.innerHTML = `${temperatureCelsius}`;
   fahr.classList.remove("active");
   celsius.classList.add("active");
 }
-
 let temperatureCelsius = null;
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", submitCity);
 
